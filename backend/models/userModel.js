@@ -2,7 +2,7 @@ class User {
     static Roles = {
         ADMIN: 'admin',
         USER: 'user',
-        SUPER_ADMIN: 'suoerAdmin',
+        SUPER_ADMIN: 'superAdmin',
     };
 
     constructor(id, name, email, password, role, createdAt) {

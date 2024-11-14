@@ -1,21 +1,16 @@
-const express = require('express');
+const express = require('express')
+const app = express()
+const cors = require('cors')
+const bodyParser = require('body-parser')
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(cors())
+app.use(express.static(__dirname))
 const db = require('./firebase'); // Import the Firestore connection
-
-const app = express();
 app.use(express.json());
 
-app.post('/add-data', async (req, res) => {
-  try {
-    const { field1, field2 } = req.body;
-    const docRef = await db.collection('testCollection').add({
-      field1,
-      field2,
-    });
-    res.status(201).send(`Document added with ID: ${docRef.id}`);
-  } catch (error) {
-    res.status(500).send(`Error adding document: ${error.message}`);
-  }
-});
+const userRoute = require('./controllers/userController')
+app.use(`/user`, userRoute)
 
 app.listen(3000, () => {
   console.log('Server running on http://localhost:3000');

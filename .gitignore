@@ -42,5 +42,5 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Firebase
-serviceAccountKey.json
+# Firebase credentials
+telkomsel-scanner-firebase-adminsdk-cbd2y-6383334371.json

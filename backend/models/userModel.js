@@ -10,9 +10,25 @@ class User {
       this.name = name;
       this.email = email;
       this.password = password;
-      this.role = role || User.Roles
+      this.role = role || User.Roles.USER;
       this.createdAt = createdAt || new Date(); // Set to current date if not provided
     }
+    static async getNextId(db) {
+      const counterDoc = db.collection('counters').doc('users');
+      
+      // Use transaction to ensure atomic update
+      return db.runTransaction(async (transaction) => {
+          const doc = await transaction.get(counterDoc);
+          
+          let nextId = 1;
+          if (doc.exists) {
+              nextId = doc.data().value + 1;
+          }
+          
+          transaction.set(counterDoc, { value: nextId });
+          return nextId;
+      });
+  }
   
     // Convert to Firestore data format (e.g., for setting document)
     toFirestore() {

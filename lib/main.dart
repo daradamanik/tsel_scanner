@@ -1,60 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:tsel_scanner/auth/auth_provider.dart';
 import 'firebase_options.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import './auth/auth_Service.dart';
+import './auth/login_screen.dart';
+import './home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  try {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  } catch (e) {
-    print("Firebase initialization error: $e");
-  }
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Firestore Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  // Define the addTestData function here
-  Future<void> addTestData() async {
-    await FirebaseFirestore.instance.collection('testCollection').add({
-      'field1': 'Hello',
-      'field2': 'Firestore',
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Firestore Test'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            await addTestData(); // Call the function when the button is pressed
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Data added to Firestore")),
-            );
-          },
-          child: const Text('Add Test Data to Firestore'),
+    return MultiProvider(
+      // Changed from ChangeNotifierProvider to MultiProvider
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => AuthProvider(), // Make sure AuthProvider class exists
         ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Firebase Auth',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const LoginScreen(),
+          '/home': (context) => const HomeScreen(),
+        },
       ),
     );
   }

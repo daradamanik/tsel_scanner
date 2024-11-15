@@ -13,7 +13,20 @@
           "package_name": "com.example.tsel_scanner"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "574607737304-du8esq5r1a9isbrpvblksohj9r379veo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tsel_scanner",
+            "certificate_hash": "1aa9ac5bc32ca3fa672c7b4e5fb9fb95e3156396"
+          }
+        },
+        {
+          "client_id": "574607737304-r6176aclq84hc1ckapii7b44lih37kqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB7i5Y5XWjjnKTLHhAwHPgFsZpbhA6QmA4"
@@ -21,7 +34,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "574607737304-r6176aclq84hc1ckapii7b44lih37kqe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "574607737304-1egpcnfq3vb6u4m150qm13salpueoeik.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tselScanner"
+              }
+            }
+          ]
         }
       }
     }

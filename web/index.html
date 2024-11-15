@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -15,6 +16,7 @@
     the `--base-href` argument provided to `flutter build`.
   -->
   <base href="$FLUTTER_BASE_HREF">
+  <meta name="google-signin-client_id" content="574607737304-r6176aclq84hc1ckapii7b44lih37kqe.apps.googleusercontent.com">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -27,12 +29,28 @@
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <title>tsel_scanner</title>
   <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBE7-4j-JrUBgtLsBra-VM96d_edKY0ziM",
+      authDomain: "telkomsel-scanner.firebaseapp.com",
+      databaseURL: "https://telkomsel-scanner-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "telkomsel-scanner",
+      storageBucket: "telkomsel-scanner.firebasestorage.app",
+      messagingSenderId: "574607737304",
+      appId: "1:574607737304:web:c3aec85231c26f9b0c32ad",
+      measurementId: "G-VQ36N6L3BV"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="main.dart.js" type="application/javascript"></script>
+
 </body>
+
 </html>
